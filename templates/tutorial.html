@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Deadweight</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript" src="{{ url_for('static', filename='jquery.js') }}"></script>
+    <script type=text/javascript>
+      $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
+    <script type="text/javascript">
+      jQuery(document).ready(function() {
+      $('a#calculate').bind('click', function() {
+        $.getJSON('/calculate', {
+                weight: $('#weight').val(),
+                type: $('#boatType').val(),
+                time: $('#time').val()                      
+              }, function(data) {
+                $("#result").text(data.time);
+              });
+              return false;
+        });
+      }) 
+    </script>    
+    
+    <!-- Le styles -->
+    <link href="../static/css/bootstrap.css" rel="stylesheet">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+    <link href="../static/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">Deadweight</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+          <div class="control-group">
+            <label class="control-label" for="weight">Weight</label>
+            <div class="controls">
+              <input type="text" class="input-xlarge" id="weight">
+              <p class="help-block">In kg</p>
+            </div>
+          </div>
+          
+          <div class="control-group">
+            <label class="control-label" for="boatType">Boat Type</label>
+            <div class="controls">
+              <select id="boatType">
+                <option>8+</option>
+                <option>4+</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="time">Time</label>
+            <div class="controls">
+              <input type="text" class="input-xlarge" id="time">
+              <p class="help-block">Over any distance</p>
+            </div>
+          </div>
+
+          <a href="#" class="btn btn-large btn-primary" id="calculate">Calculate</a>          
+          
+          <div class="alert alert-info">
+            <a class="close" data-dismiss="alert" href="#">x</a>
+            <strong>Holy guacamole!</strong> They're adding <span id="result">0</span> s
+          </div>          
+          
+      
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{ url_for('static', filename='jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap-transition.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap-alert.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap-modal.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap-dropdown.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap-scrollspy.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap-tab.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap-tooltip.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap-popover.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap-button.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap-collapse.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap-carousel.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap-typeahead.js') }}"></script>
+
+  </body>
+</html>
