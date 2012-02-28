@@ -1,1 +1,1 @@
-web: python tutorial.py
+web: python app.py
